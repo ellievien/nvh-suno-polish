@@ -1,0 +1,16 @@
+build/
+obj/
+*.exe
+*.obj
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.vst3
+.vs/
+.vscode/
+.idea/
+*.user
+__pycache__/
+.DS_Store
+Thumbs.db
