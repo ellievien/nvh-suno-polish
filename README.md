@@ -1,6 +1,6 @@
-# nvh the noise
+# nvh suno polish
 
-A real-time **vocal denoiser VST3** for Windows DAWs (built for Studio One / Fender Studio Pro 8, works in any VST3 host). Drop it on a vocal track and it removes background noise, hiss, hum, and room as the track plays — powered by [RNNoise](https://github.com/xiph/rnnoise) running in real time in the audio thread. No server, no GPU.
+A **vocal denoise + studio-polish VST3** for Windows DAWs (built for Studio One / Fender Studio Pro 8, works in any VST3 host). Drop it on a vocal track for real-time denoising — background noise, hiss, hum, and room removed as the track plays, powered by [RNNoise](https://github.com/xiph/rnnoise) in the audio thread (no server, no GPU) — plus an offline **Studio Process** panel that enhances, regenerates, or fully produces a take into a Suno-style polished vocal.
 
 ## Features
 
@@ -12,11 +12,12 @@ A real-time **vocal denoiser VST3** for Windows DAWs (built for Studio One / Fen
 
 The DSP core lives in [`Source/DenoiseCore.h`](Source/DenoiseCore.h) — a self-contained, JUCE-free class (cubic streaming resamplers around RNNoise's 480-sample frames + latency-aligned dry/wet), unit-tested by [`test/test_core.cpp`](test/test_core.cpp).
 
-## Roadmap — "Studio Process" (model-based)
+## Studio Process (model-based, offline)
 
-An offline, file-based panel that reproduces a take at studio quality:
+An offline, file-based panel that reproduces a take at studio quality — load a take, process, audition, save. Backed by a local [ComfyUI-VoiceCloneUI](https://github.com/ellievien/ComfyUI-VoiceCloneUI) server and an isolated Python venv:
 - **Enhance my take** — a restoration model (DeepFilterNet) keeps your performance and makes it studio-clean.
-- **Regenerate in my cloned voice** — transcribe + re-speak in a cloned voice (via [ComfyUI-VoiceCloneUI](https://github.com/ellievien/ComfyUI-VoiceCloneUI)).
+- **Regenerate in my cloned voice** — transcribe + re-speak in a cloned voice (Whisper + Qwen3-TTS).
+- **Suno Polish** — clean → autotune (snap to key/scale) → production chain (EQ, compression, saturation, width, reverb) → loud master, for a produced, Suno-style vocal.
 
 ## Build (Windows)
 
@@ -34,7 +35,7 @@ Edit the paths near the top of [`CMakeLists.txt`](CMakeLists.txt) (`JUCE` and `R
 build.bat
 ```
 
-This configures with Ninja (Release) and builds. With `COPY_PLUGIN_AFTER_BUILD` it installs to `C:\Program Files\Common Files\VST3\nvh the noise.vst3`. Restart your DAW (or rescan VST3) to load it.
+This configures with Ninja (Release) and builds. With `COPY_PLUGIN_AFTER_BUILD` it installs to `C:\Program Files\Common Files\VST3\nvh suno polish.vst3`. Restart your DAW (or rescan VST3) to load it.
 
 > Note: `CMakeLists.txt` currently uses absolute dependency paths (this started as a personal build). Adjust them for your machine.
 

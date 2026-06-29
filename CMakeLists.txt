@@ -27,7 +27,7 @@ endif()
 
 juce_add_plugin(VocalCleaner
     COMPANY_NAME            "nvhstudio"
-    PRODUCT_NAME            "nvh the noise"
+    PRODUCT_NAME            "nvh suno polish"
     PLUGIN_MANUFACTURER_CODE Nvhs
     PLUGIN_CODE             Vcl1
     FORMATS                 VST3
